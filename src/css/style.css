@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&display=swap');
+
+/* ── Base ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #FFF8F0;
+  color: #3E1F00;
+}
+
+/* ── Typography helpers ───────────────────────────────────── */
+.font-playfair   { font-family: 'Playfair Display', serif; }
+.font-cormorant  { font-family: 'Cormorant Garamond', serif; }
+.font-lato       { font-family: 'Lato', sans-serif; }
+.font-dancing    { font-family: 'Dancing Script', cursive; }
+
+/* ── Brand colours ────────────────────────────────────────── */
+:root {
+  --blush:      #F4A7B9;
+  --deep-rose:  #C2185B;
+  --gold:       #D4A843;
+  --cream:      #FFF8F0;
+  --choco:      #3E1F00;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary {
+  @apply bg-deeprose hover:bg-pink-800 text-white font-semibold px-6 py-3 rounded-full transition duration-200 shadow-md;
+}
+.btn-secondary {
+  @apply border-2 border-deeprose text-deeprose hover:bg-deeprose hover:text-white font-semibold px-6 py-3 rounded-full transition duration-200;
+}
+.btn-whatsapp {
+  @apply bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition duration-200 shadow-md flex items-center gap-2;
+}
+
+/* ── Navbar ───────────────────────────────────────────────── */
+.nav-link {
+  @apply text-sm font-semibold text-choco hover:text-deeprose transition duration-150 relative;
+}
+.nav-link.active::after {
+  content: '';
+  @apply absolute bottom-[-4px] left-0 right-0 h-0.5 bg-deeprose rounded;
+}
+
+/* ── Section headings ─────────────────────────────────────── */
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  @apply text-4xl font-semibold text-choco;
+}
+.section-subtitle {
+  font-family: 'Dancing Script', cursive;
+  @apply text-xl text-deeprose;
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.cake-card {
+  @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-200 overflow-hidden;
+}
+
+/* ── Gallery grid ─────────────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* ── Gallery filter buttons ───────────────────────────────── */
+.gallery-filter-btn.active-filter {
+  @apply bg-deeprose text-white border-deeprose;
+}
+
+/* ── Star ratings ─────────────────────────────────────────── */
+.star { color: #D4A843; }
+
+/* ── Form inputs ──────────────────────────────────────────── */
+.form-input {
+  @apply w-full border border-rose-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-300 bg-white transition;
+}
+.form-label {
+  @apply block text-sm font-semibold text-choco mb-1;
+}
+
+/* ── Toast notifications ──────────────────────────────────── */
+#toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: opacity 0.3s;
+}
+
+/* ── Hero gradient ────────────────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(135deg, #FFF8F0 0%, #FFE4EE 50%, #FFF8F0 100%);
+}
+
+/* ── Decorative divider ───────────────────────────────────── */
+.divider-rose {
+  height: 2px;
+  background: linear-gradient(to right, transparent, #F4A7B9, transparent);
+  border: none;
+  margin: 2rem auto;
+  max-width: 200px;
+}
+
+/* ── Lightbox ─────────────────────────────────────────────── */
+#lightbox { display: flex; align-items: center; justify-content: center; }
+#lightbox.hidden { display: none; }
+
+/* ── Scroll fade-in animation ─────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Admin tab active ─────────────────────────────────────── */
+.tab-btn.active {
+  border-bottom: 3px solid #C2185B;
+  color: #C2185B;
+  font-weight: 700;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }

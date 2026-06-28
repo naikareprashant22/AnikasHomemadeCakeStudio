@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block admin pages from indexing
+Disallow: /src/pages/admin/
+Disallow: /admin/
+
+# Allow CSS and JS for rendering
+Allow: /src/css/
+Allow: /src/js/
+
+Sitemap: https://anikas-cake-studio.web.app/sitemap.xml

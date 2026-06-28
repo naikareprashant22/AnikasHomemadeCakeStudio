@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login – Anika's Homemade Cake Studio</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body class="min-h-screen hero-gradient flex items-center justify-center px-4">
+
+  <div class="w-full max-w-md">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <span class="text-6xl block mb-3">🎂</span>
+      <h1 class="font-playfair text-3xl font-bold text-choco">Anika's Cake Studio</h1>
+      <p class="font-dancing text-xl text-deeprose mt-1">Admin Portal</p>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-2xl shadow-xl p-8">
+
+      <!-- Login Form -->
+      <div id="login-section">
+        <h2 class="font-cormorant text-2xl font-semibold text-choco mb-6 text-center">Sign In</h2>
+
+        <div id="login-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl p-3 mb-4 text-sm"></div>
+        <div id="login-success" class="hidden bg-green-50 border border-green-200 text-green-700 rounded-xl p-3 mb-4 text-sm"></div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="admin@example.com" autocomplete="email" />
+          </div>
+          <div>
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+          </div>
+          <button id="login-btn" class="btn-primary w-full py-3 text-base">Sign In</button>
+        </div>
+
+        <button id="show-forgot" class="mt-4 w-full text-center text-sm text-deeprose hover:underline transition">
+          Forgot password?
+        </button>
+      </div>
+
+      <!-- Forgot Password Form -->
+      <div id="forgot-section" class="hidden">
+        <button id="back-to-login" class="text-sm text-gray-400 hover:text-deeprose transition mb-4 flex items-center gap-1">
+          ← Back to login
+        </button>
+        <h2 class="font-cormorant text-2xl font-semibold text-choco mb-2">Reset Password</h2>
+        <p class="text-sm text-gray-500 mb-6">Enter your admin email and we'll send a reset link.</p>
+
+        <div id="forgot-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl p-3 mb-4 text-sm"></div>
+        <div id="forgot-success" class="hidden bg-green-50 border border-green-200 text-green-700 rounded-xl p-3 mb-4 text-sm"></div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="form-label" for="forgot-email">Email</label>
+            <input type="email" id="forgot-email" class="form-input" placeholder="admin@example.com" />
+          </div>
+          <button id="reset-btn" class="btn-primary w-full py-3 text-base">Send Reset Email</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center text-xs text-gray-400 mt-6">
+      <a href="/src/pages/index.html" class="hover:text-deeprose transition">← Back to website</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { auth } from '/src/js/firebase.js';
+    import {
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      onAuthStateChanged
+    } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+    const DASHBOARD = '/src/pages/admin/dashboard.html';
+
+    // If already logged in → redirect to dashboard
+    onAuthStateChanged(auth, user => {
+      if (user) window.location.href = DASHBOARD;
+    });
+
+    // Show error from redirect
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error') === 'unauthorized') showError('login-error', 'You do not have admin access.');
+    if (params.get('error') === 'auth_error') showError('login-error', 'Authentication error. Please try again.');
+
+    // ── Login ──
+    document.getElementById('login-btn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      hideMessages('login');
+
+      if (!email || !password) { showError('login-error', 'Please enter email and password.'); return; }
+
+      const btn = document.getElementById('login-btn');
+      btn.disabled = true; btn.textContent = 'Signing in…';
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = DASHBOARD;
+      } catch (err) {
+        btn.disabled = false; btn.textContent = 'Sign In';
+        const msg = err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password'
+          ? 'Incorrect email or password.'
+          : err.code === 'auth/too-many-requests'
+          ? 'Too many attempts. Please wait and try again.'
+          : 'Login failed. Please try again.';
+        showError('login-error', msg);
+      }
+    });
+
+    // Enter key support
+    document.getElementById('password').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('login-btn').click();
+    });
+
+    // ── Forgot Password ──
+    document.getElementById('show-forgot').addEventListener('click', () => {
+      document.getElementById('login-section').classList.add('hidden');
+      document.getElementById('forgot-section').classList.remove('hidden');
+    });
+    document.getElementById('back-to-login').addEventListener('click', () => {
+      document.getElementById('forgot-section').classList.add('hidden');
+      document.getElementById('login-section').classList.remove('hidden');
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', async () => {
+      const email = document.getElementById('forgot-email').value.trim();
+      hideMessages('forgot');
+
+      if (!email) { showError('forgot-error', 'Please enter your email.'); return; }
+
+      const btn = document.getElementById('reset-btn');
+      btn.disabled = true; btn.textContent = 'Sending…';
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        document.getElementById('forgot-success').textContent = 'Reset email sent! Check your inbox.';
+        document.getElementById('forgot-success').classList.remove('hidden');
+      } catch (err) {
+        showError('forgot-error', 'Could not send reset email. Check the address and try again.');
+      } finally {
+        btn.disabled = false; btn.textContent = 'Send Reset Email';
+      }
+    });
+
+    function showError(id, msg) {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = msg; el.classList.remove('hidden'); }
+    }
+    function hideMessages(prefix) {
+      [`${prefix}-error`, `${prefix}-success`].forEach(id => {
+        document.getElementById(id)?.classList.add('hidden');
+      });
+    }
+  </script>
+</body>
+</html>

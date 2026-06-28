@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order a Cake – Anika's Homemade Cake Studio | Ravet Pune</title>
+  <meta name="description" content="Order a custom eggless cake from Anika's Homemade Cake Studio in Ravet, Pune. Fill out the form and we'll get back to you on WhatsApp." />
+  <meta property="og:title" content="Order a Cake – Anika's Homemade Cake Studio" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body>
+
+  <!-- ── PAGE HERO ─────────────────────────────────────────────── -->
+  <section class="hero-gradient py-20 text-center">
+    <p class="section-subtitle mb-2">Get in Touch</p>
+    <h1 class="section-title text-5xl">Contact & Order</h1>
+    <hr class="divider-rose" />
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+
+      <!-- ── Contact Info ── -->
+      <div class="fade-in">
+        <p class="section-subtitle mb-2">Find Us</p>
+        <h2 class="font-cormorant text-3xl font-semibold text-choco mb-6">Contact Information</h2>
+
+        <div class="space-y-5">
+          <div class="flex items-start gap-4 bg-cream p-4 rounded-2xl">
+            <span class="text-3xl">📍</span>
+            <div>
+              <p class="font-semibold text-choco mb-1">Address</p>
+              <p class="text-gray-600 text-sm">Vision Aristo, Mukai Chowk,<br/>Ravet, Pune, Maharashtra – 412101</p>
+            </div>
+          </div>
+
+          <a href="https://wa.me/919503025610" target="_blank"
+             class="flex items-start gap-4 bg-green-50 p-4 rounded-2xl hover:bg-green-100 transition group">
+            <span class="text-3xl">💬</span>
+            <div>
+              <p class="font-semibold text-choco mb-1 group-hover:text-green-700 transition">WhatsApp</p>
+              <p class="text-gray-600 text-sm">+91 95030 25610</p>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/anika_shomemadecakestudio" target="_blank"
+             class="flex items-start gap-4 bg-pink-50 p-4 rounded-2xl hover:bg-pink-100 transition group">
+            <span class="text-3xl">📸</span>
+            <div>
+              <p class="font-semibold text-choco mb-1 group-hover:text-deeprose transition">Instagram</p>
+              <p class="text-gray-600 text-sm">@anika_shomemadecakestudio</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Google Map embed placeholder -->
+        <div class="mt-6 rounded-2xl overflow-hidden shadow-sm">
+          <iframe
+            src="https://maps.google.com/maps?q=Vision+Aristo+Mukai+Chowk+Ravet+Pune&output=embed"
+            width="100%" height="220" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Anika's Cake Studio location">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- ── Order Form ── -->
+      <div class="fade-in">
+        <p class="section-subtitle mb-2">Ready to Order?</p>
+        <h2 class="font-cormorant text-3xl font-semibold text-choco mb-6">Place Your Order</h2>
+
+        <!-- Success message -->
+        <div id="order-success" class="hidden bg-green-50 border border-green-200 text-green-800 rounded-xl p-4 mb-4 text-sm font-semibold">
+          🎉 Your order request has been saved! WhatsApp has opened with a pre-filled message. If it didn't open, <a href="https://wa.me/919503025610" target="_blank" class="underline">click here</a>.
+        </div>
+
+        <!-- Error message -->
+        <div id="order-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 mb-4 text-sm"></div>
+
+        <form id="order-form" class="space-y-4" novalidate>
+          <div>
+            <label class="form-label" for="order-name">Full Name *</label>
+            <input type="text" id="order-name" class="form-input" placeholder="Your name" required />
+          </div>
+          <div>
+            <label class="form-label" for="order-phone">Mobile Number *</label>
+            <input type="tel" id="order-phone" class="form-input" placeholder="10-digit mobile number" maxlength="10" required />
+          </div>
+          <div>
+            <label class="form-label" for="order-cake-type">Cake Type *</label>
+            <select id="order-cake-type" class="form-input" required>
+              <option value="">Select cake type…</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="order-size">Size *</label>
+            <select id="order-size" class="form-input" required>
+              <option value="">Select size…</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="order-flavour">Flavour *</label>
+            <select id="order-flavour" class="form-input" required>
+              <option value="">Select flavour…</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="order-delivery-date">Required Date *</label>
+            <input type="date" id="order-delivery-date" class="form-input" required />
+          </div>
+          <div>
+            <label class="form-label" for="order-message">Special Instructions</label>
+            <textarea id="order-message" class="form-input" rows="3" placeholder="Theme, colour, any special requests…"></textarea>
+          </div>
+
+          <button id="order-submit-btn" type="submit" class="btn-primary w-full text-center py-4 text-base">
+            Send Order on WhatsApp 📲
+          </button>
+          <p class="text-xs text-gray-400 text-center">Your order details will be saved and WhatsApp will open with a pre-filled message.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { renderNavbar } from '/src/js/components/navbar.js';
+    import { renderFooter } from '/src/js/components/footer.js';
+    import '/src/js/orderForm.js';
+    renderNavbar();
+    renderFooter();
+
+    // Set min date to today
+    const dateInput = document.getElementById('order-delivery-date');
+    if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

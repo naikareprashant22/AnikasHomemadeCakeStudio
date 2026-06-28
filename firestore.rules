@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: check if user is an admin
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Gallery – public read, admin write
+    match /gallery/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Reviews – public read, admin write
+    match /reviews/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // cakeConfig – public read (for order form dropdowns), admin write
+    match /cakeConfig/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Order requests – anyone can create, only admins can read/delete
+    match /orderRequests/{docId} {
+      allow create: if true;
+      allow read, delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // Admins – only admins can read their own doc; no client writes
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Reviews – Anika's Homemade Cake Studio | Pune</title>
+  <meta name="description" content="Read what our customers say about Anika's eggless cakes. Hundreds of happy customers across Ravet and Pune." />
+  <meta property="og:title" content="Reviews – Anika's Homemade Cake Studio" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body>
+
+  <!-- ── PAGE HERO ─────────────────────────────────────────────── -->
+  <section class="hero-gradient py-20 text-center">
+    <p class="section-subtitle mb-2">What Our Customers Say</p>
+    <h1 class="section-title text-5xl">Reviews</h1>
+    <hr class="divider-rose" />
+  </section>
+
+  <!-- ── SUMMARY ────────────────────────────────────────────────── -->
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-cream rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center shadow-sm">
+        <!-- Avg rating -->
+        <div class="text-center">
+          <p id="avg-rating" class="font-playfair text-6xl font-bold text-deeprose">—</p>
+          <div class="flex justify-center gap-1 my-2">
+            <span class="star text-2xl">★</span>
+            <span class="star text-2xl">★</span>
+            <span class="star text-2xl">★</span>
+            <span class="star text-2xl">★</span>
+            <span class="star text-2xl">★</span>
+          </div>
+          <p id="total-reviews" class="text-sm text-gray-500"></p>
+        </div>
+        <!-- Bars -->
+        <div id="stars-bar" class="flex-1 w-full space-y-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REVIEWS GRID ───────────────────────────────────────────── -->
+  <section class="py-12 bg-cream">
+    <div class="max-w-5xl mx-auto px-4">
+      <div id="reviews-loading" class="text-center py-20 text-gray-400">
+        <div class="text-5xl mb-4">⭐</div>
+        <p>Loading reviews…</p>
+      </div>
+      <div id="reviews-empty" class="text-center py-20 text-gray-400 hidden">
+        <div class="text-5xl mb-4">💬</div>
+        <p>No reviews yet.</p>
+      </div>
+      <div id="reviews-grid" class="grid md:grid-cols-2 gap-6 hidden"></div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────────── -->
+  <section class="py-12 bg-deeprose text-white text-center">
+    <p class="font-dancing text-2xl text-blush mb-2">Love our cakes?</p>
+    <h2 class="font-playfair text-3xl font-bold mb-4">Order Yours Today</h2>
+    <a href="/src/pages/contact.html" class="bg-white text-deeprose hover:bg-cream font-bold px-8 py-3 rounded-full transition shadow-md inline-block">
+      Place an Order 🎂
+    </a>
+  </section>
+
+  <script type="module">
+    import { renderNavbar } from '/src/js/components/navbar.js';
+    import { renderFooter } from '/src/js/components/footer.js';
+    import '/src/js/reviews.js';
+    renderNavbar();
+    renderFooter();
+  </script>
+</body>
+</html>

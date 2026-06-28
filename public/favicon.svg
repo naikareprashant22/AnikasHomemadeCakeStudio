@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#FFF8F0"/>
+
+  <!-- Cake base tier -->
+  <rect x="12" y="42" width="40" height="12" rx="4" fill="#C2185B"/>
+  <!-- Cake middle tier -->
+  <rect x="16" y="30" width="32" height="13" rx="3" fill="#F4A7B9"/>
+  <!-- Cake top tier -->
+  <rect x="20" y="21" width="24" height="10" rx="3" fill="#C2185B"/>
+
+  <!-- Frosting drips on middle -->
+  <ellipse cx="22" cy="30" rx="3" ry="2" fill="#FFF8F0"/>
+  <ellipse cx="32" cy="30" rx="3" ry="2" fill="#FFF8F0"/>
+  <ellipse cx="42" cy="30" rx="3" ry="2" fill="#FFF8F0"/>
+
+  <!-- Candle -->
+  <rect x="30" y="14" width="4" height="8" rx="1" fill="#D4A843"/>
+  <!-- Flame -->
+  <ellipse cx="32" cy="13" rx="2.5" ry="3.5" fill="#D4A843" opacity="0.9"/>
+  <ellipse cx="32" cy="12" rx="1.5" ry="2.5" fill="#FFF8F0" opacity="0.7"/>
+
+  <!-- Decorative dots on base -->
+  <circle cx="20" cy="48" r="2" fill="#FFF8F0" opacity="0.8"/>
+  <circle cx="32" cy="48" r="2" fill="#FFF8F0" opacity="0.8"/>
+  <circle cx="44" cy="48" r="2" fill="#FFF8F0" opacity="0.8"/>
+</svg>
