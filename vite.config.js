@@ -5,9 +5,7 @@ import { fileURLToPath } from 'url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
-  // Required for GitHub Pages
-  base: '/AnikasHomemadeCakeStudio/',
-
+  // No base: needed for Firebase Hosting (only needed for GitHub Pages)
   root: '.',
   publicDir: 'public',
 
@@ -29,6 +27,7 @@ export default defineConfig({
 
   server: {
     port: 5173,
-    open: '/src/pages/index.html'
+    // Mirrors Firebase Hosting rewrites so /admin works locally too
+    open: '/src/pages/index.html',
   }
 });
