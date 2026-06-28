@@ -93,20 +93,35 @@
       <p class="font-dancing text-2xl text-blush mb-2">The Difference</p>
       <h2 class="font-playfair text-4xl font-bold mb-10">Why Customers Love Us</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
-        ${[
-          ['🎂', 'Fully Customised', 'Tell us your theme, size, flavour, and we\'ll bring your vision to life.'],
-          ['⏰', 'On-Time Delivery', 'We respect your celebration timeline and always deliver on schedule.'],
-          ['💌', 'Made to Order', 'Every cake is baked fresh only after you place your order — never pre-made.'],
-          ['📲', 'Easy WhatsApp Orders', 'No complicated forms. Just message us and your cake is on the way.'],
-        ].map(([icon, title, desc]) => `
-          <div class="flex gap-4 bg-white/10 rounded-2xl p-5">
-            <span class="text-3xl">${icon}</span>
-            <div>
-              <h3 class="font-cormorant text-lg font-semibold text-blush mb-1">${title}</h3>
-              <p class="text-white/80 text-sm">${desc}</p>
-            </div>
-          </div>`).join('')}
+      <div class="flex gap-4 bg-white/10 rounded-2xl p-5">
+        <span class="text-3xl">🎂</span>
+        <div>
+          <h3 class="font-cormorant text-lg font-semibold text-blush mb-1">Fully Customised</h3>
+          <p class="text-white/80 text-sm">Tell us your theme, size, flavour, and we'll bring your vision to life.</p>
+        </div>
       </div>
+      <div class="flex gap-4 bg-white/10 rounded-2xl p-5">
+        <span class="text-3xl">⏰</span>
+        <div>
+          <h3 class="font-cormorant text-lg font-semibold text-blush mb-1">On-Time Delivery</h3>
+          <p class="text-white/80 text-sm">We respect your celebration timeline and always deliver on schedule.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 bg-white/10 rounded-2xl p-5">
+        <span class="text-3xl">💌</span>
+        <div>
+          <h3 class="font-cormorant text-lg font-semibold text-blush mb-1">Made to Order</h3>
+          <p class="text-white/80 text-sm">Every cake is baked fresh only after you place your order — never pre-made.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 bg-white/10 rounded-2xl p-5">
+        <span class="text-3xl">📲</span>
+        <div>
+          <h3 class="font-cormorant text-lg font-semibold text-blush mb-1">Easy WhatsApp Orders</h3>
+          <p class="text-white/80 text-sm">No complicated forms. Just message us and your cake is on the way.</p>
+        </div>
+      </div>
+    </div>
       <div class="mt-10">
         <a href="/src/pages/contact.html" class="bg-white text-deeprose hover:bg-cream font-bold px-8 py-3 rounded-full transition shadow-md inline-block">
           Order Your Cake 🎂
