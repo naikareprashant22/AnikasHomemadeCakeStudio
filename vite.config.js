@@ -5,8 +5,12 @@ import { fileURLToPath } from 'url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
+  // Required for GitHub Pages
+  base: '/AnikasHomemadeCakeStudio/',
+
   root: '.',
   publicDir: 'public',
+
   build: {
     outDir: 'dist',
     emptyOutDir: true,
@@ -22,6 +26,7 @@ export default defineConfig({
       }
     }
   },
+
   server: {
     port: 5173,
     open: '/src/pages/index.html'
